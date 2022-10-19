@@ -1,0 +1,10 @@
+name: Deploy Cloud Function
+
+on:
+  workflow_call:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploy Cloud Function"

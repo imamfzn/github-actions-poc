@@ -20,17 +20,17 @@ jobs:
     steps:
       - run: echo "building image"
 
-  deploy/dev:
-    runs-on: ubuntu-latest
+  cloud-run-dev:
+    uses: ./.github/workflows/deploy-cloud-run.yaml
     needs:
       - build
     steps:
       - run: echo "deploy to dev env"
 
-  deploy/production:
-    runs-on: ubuntu-latest
+  cloud-run-production:
+    uses: ./.github/workflows/deploy-cloud-run.yaml
     needs:
       - build
     if: github.ref != 'refs/heads/master'
     steps:
-      - run: echo "deploy to dev env"
+      - run: echo "deploy to dev production"

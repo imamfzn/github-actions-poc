@@ -20,8 +20,7 @@ jobs:
 
   deploy:
     uses: ./.github/workflows/deploy-cloud-run.yaml
-    needs:
-      - build
+
 
   # cloud-run-production:
   #   uses: ./.github/workflows/deploy-cloud-run.yaml

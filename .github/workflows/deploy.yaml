@@ -12,3 +12,10 @@ on:
 jobs:
   test:
     uses: ./.github/workflows/test.yaml
+
+  build:
+    runs-on: ubuntu-latest
+    needs:
+      - test
+    steps:
+      - run: "echo building image"

@@ -17,13 +17,15 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - test
+    steps:
+      - run: echo "building image"
 
-  deploy:
+  cloud-run-dev:
     uses: ./.github/workflows/deploy-cloud-run.yaml
-
-
-  # cloud-run-production:
-  #   uses: ./.github/workflows/deploy-cloud-run.yaml
-  #   needs:
-  #     - build
-  #   if: github.ref != 'refs/heads/master'
+    needs:
+      - build
+  cloud-run-production:
+    uses: ./.github/workflows/deploy-cloud-run.yaml
+    needs:
+      - build
+    if: github.ref != 'refs/heads/master'

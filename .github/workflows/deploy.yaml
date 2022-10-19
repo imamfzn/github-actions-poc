@@ -3,6 +3,8 @@ name: Deployment
 on:
   workflow_dispatch:
   push:
+    branches:
+      - master
     tags:
       - release-*
       - v[0-9].[0-9]+.[0-9]+
@@ -10,24 +12,3 @@ on:
 jobs:
   test:
     uses: ./.github/workflows/test.yaml
-
-  build:
-    runs-on: ubuntu-latest
-    needs:
-      - test
-    steps:
-      - run: "echo building image"
-
-  deploy/dev:
-    runs-on: ubuntu-latest
-    needs:
-      - build
-    steps:
-      - run: "deploy to dev env"
-
-   deploy/production:
-    runs-on: ubuntu-latest
-    needs:
-      - build
-    steps:
-      - run: "deploy to production env"

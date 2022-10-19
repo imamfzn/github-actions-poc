@@ -24,8 +24,20 @@ jobs:
     uses: ./.github/workflows/deploy-cloud-run.yaml
     needs:
       - build
+
   cloud-run-production:
     uses: ./.github/workflows/deploy-cloud-run.yaml
+    needs:
+      - build
+    if: github.ref != 'refs/heads/master'
+
+  cloud-function-dev:
+    uses: ./.github/workflows/deploy-cloud-function.yaml
+    needs:
+      - build
+
+  cloud-function-production:
+    uses: ./.github/workflows/deploy-cloud-function.yaml
     needs:
       - build
     if: github.ref != 'refs/heads/master'

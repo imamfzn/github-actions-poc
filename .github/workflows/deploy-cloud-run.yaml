@@ -1,10 +1,15 @@
-name: Deploy Cloud Run
+name: Deploy Cloud Run and Cloud Function
 
 on:
   workflow_call:
 
 jobs:
-  deploy:
+  cloudrun:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Deploy Cloud Run"
+
+  cloudfunction:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploy Cloud Function"

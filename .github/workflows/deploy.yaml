@@ -20,24 +20,13 @@ jobs:
     steps:
       - run: echo "building image"
 
-  cloud-run-dev:
-    uses: ./.github/workflows/deploy-cloud-run.yaml
+  deploy-dev:
+    uses: ./.github/workflows/deploy-cf-cr.yaml
     needs:
       - build
 
-  cloud-run-production:
-    uses: ./.github/workflows/deploy-cloud-run.yaml
-    needs:
-      - build
-    if: github.ref != 'refs/heads/master'
-
-  cloud-function-dev:
-    uses: ./.github/workflows/deploy-cloud-function.yaml
-    needs:
-      - build
-
-  cloud-function-production:
-    uses: ./.github/workflows/deploy-cloud-function.yaml
+  deploy-dev:
+    uses: ./.github/workflows/deploy-cf-cr.yaml
     needs:
       - build
     if: github.ref != 'refs/heads/master'

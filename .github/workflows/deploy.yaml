@@ -34,7 +34,7 @@ jobs:
       - id: check
         run: |
           if [[ ${{ github.ref }} =~ ^refs/tags/v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo ::set-output name=trigger::true
+            echo "trigger=true" >> $GITHUB_OUTPUTS
           fi
 
   deploy-prod:
@@ -42,4 +42,4 @@ jobs:
     needs:
       - build
       - production-checker
-    if: needs.production-checker.outputs.production_trigger == 'true'
+    if: needs.production-checker.outputs.trigger == 'true'

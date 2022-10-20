@@ -34,7 +34,7 @@ jobs:
       - id: check
         run: |
           if [[ ${{ github.ref }} =~ ^refs/tags/v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "trigger=true" >> $GITHUB_OUTPUTS
+            echo "trigger=true" >> $GITHUB_OUTPUT
           fi
 
   deploy-prod:

@@ -33,7 +33,7 @@ jobs:
     steps:
       - id: check
         run: |
-          if [[ ${{ github.ref }} =~ ^refs/tags/v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+          if [[ ${{ github.ref }} =~ (^refs/tags/v[0-9]+\.[0-9]+\.[0-9]+$)|(^release-.+) ]]; then
             echo "trigger=true" >> $GITHUB_OUTPUT
           fi
 

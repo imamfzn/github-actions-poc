@@ -38,4 +38,4 @@ jobs:
     needs:
       - build
       - production-checker
-    if: needs.production-checker.outputs.production_trigger == "true"
+    if: needs.production-checker.outputs.production_trigger == 'true'

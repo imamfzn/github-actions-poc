@@ -13,18 +13,6 @@ jobs:
   test:
     uses: ./.github/workflows/test.yaml
 
-  build:
-    runs-on: ubuntu-latest
-    needs:
-      - test
-    steps:
-      - run: echo "building image"
-
-  deploy-dev:
-    uses: ./.github/workflows/deploy-cf-cr.yaml
-    needs:
-      - build
-
   production-checker:
     runs-on: ubuntu-latest
     if: startsWith(github.ref , 'refs/tags')
@@ -38,6 +26,18 @@ jobs:
             [[ ${{ github.ref }} =~ ^refs/tags/release-.+ ]]; then
             echo "trigger=true" >> $GITHUB_OUTPUT
           fi
+
+  build:
+    runs-on: ubuntu-latest
+    needs:
+      - test
+    steps:
+      - run: echo "building image"
+
+  deploy-dev:
+    uses: ./.github/workflows/deploy-cf-cr.yaml
+    needs:
+      - build
 
   deploy-prod:
     uses: ./.github/workflows/deploy-cf-cr.yaml
